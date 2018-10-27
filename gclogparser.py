@@ -1,5 +1,6 @@
 import os
 from pprint import pprint
+from Core.helper_functions import parse_script_commandline_arguments as parse_args
 from Core.java_gc_log import JavaGCLog
 from Core.gc_log_line import GCLogLine, Watcher
 from Core.logger import logger
@@ -53,10 +54,14 @@ def debug():
     pprint(w.counters)
 
 if __name__ == '__main__':
-    w = Watcher(timeframe_minutes=5)
-    gc_log = JavaGCLog('gc.log', './')
+
+    args = parse_args()
+
+    w = Watcher(timeframe_minutes=args.timeframe)
+    gc_log = JavaGCLog(args.logfile, args.dir)
     for l in read_log_file(gc_log):
-        debug()
+        if args.debug:
+            debug()
         if w.counters['Full_GC_free_below_20'] > 10:
             logger.warning('During a 5 min window, number of FullGC events in which the memory being freed is below 20% \
 is too high [{}]'.format(w.counters['Full_GC_free_below_20']))
