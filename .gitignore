@@ -1,0 +1,7 @@
+.terraform
+.idea
+*.pyc
+venv
+*.log
+*.retry
+output
