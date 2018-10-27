@@ -10,6 +10,11 @@ requested by the task requirements.
 
 When you execute `python3 gclogparser.py` it will output help with required arguments.
 
+E.g. it can be executed like follows: 
+```bash
+$(which python3) gclogparser.py gc.log -i inventory.yml -t 5 --debug
+```
+
 Note about inventory:
 it is implied that inventory is represented with text file containing tomcat cluster hosts
 addresses (DNS name or IP) - one item per line.
