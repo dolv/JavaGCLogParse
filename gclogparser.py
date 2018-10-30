@@ -1,4 +1,5 @@
 import os
+import time
 from pprint import pprint
 from Core.helper_functions import parse_script_commandline_arguments as parse_args
 from Core.java_gc_log import JavaGCLog
@@ -22,7 +23,7 @@ def read_log_file(log):
                 log.inode = os.fstat(log.descriptor.fileno()).st_ino
         except IOError:
             pass
-        # time.sleep(5)
+        time.sleep(1)
 
 def get_health_status(url):
    return True if request.urlopen(url).getcode() == 200 else False
